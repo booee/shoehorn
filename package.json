@@ -1,6 +1,6 @@
 {
   "name": "shoehorn",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Lightweight, unopinionated MVC form binding",
   "main": "index.js",
   "repository": {
