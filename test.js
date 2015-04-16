@@ -3,7 +3,7 @@
 var assert = require('assert');
 var shoehorn = require('./shoehorn');
 
-shoehorn.registerSchema('TestSchema', {
+shoehorn.register('TestSchema', {
     'requiredNum': {
         type: Number,
         required: true

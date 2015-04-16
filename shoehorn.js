@@ -3,7 +3,7 @@ var Map = require('hackmap');
 function Shoehorn() {
     var models = new Map();
 
-    this.registerSchema = function(name, schema) {
+    this.register = function(name, schema) {
         if(models.containsKey(name)) {
             console.warn('Overriding pre-existing schema: ' + name);
         }
