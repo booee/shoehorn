@@ -1,6 +1,6 @@
 var Map = require('hackmap');
 
-function FormBinder() {
+function Shoehorn() {
     var models = new Map();
 
     this.registerSchema = function(name, schema) {
@@ -69,6 +69,6 @@ function FormBinder() {
     }
 }
 
-var singleton = new FormBinder();
+var singleton = new Shoehorn();
 
 module.exports = singleton;
