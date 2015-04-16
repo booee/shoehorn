@@ -1,0 +1,30 @@
+{
+  "name": "shoehorn",
+  "version": "0.1.0",
+  "description": "Lightweight, unopinionated MVC form binding",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brad-bowie/shoehorn.git"
+  },
+  "keywords": [
+    "mvc",
+    "express",
+    "form",
+    "form",
+    "binding",
+    "orm",
+    "mapping",
+    "data",
+    "data",
+    "binding"
+  ],
+  "license": "GPLv2",
+  "bugs": {
+    "url": "https://github.com/brad-bowie/shoehorn/issues"
+  },
+  "homepage": "https://github.com/brad-bowie/shoehorn",
+  "dependencies": {
+    "hackmap": "^1.0.2"
+  }
+}
