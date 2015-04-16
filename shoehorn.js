@@ -57,10 +57,12 @@ function FormBinder() {
         if(!toType) return value;
 
         if(toType === Number) {
-            var num = Number(value);
+            var num = new Number(value);
             return (num !== NaN) ? num : undefined;
         } else if(toType === String) {
             return new String(value);
+        } else if(toType === Date) {
+            return new Date(value);
         }
 
         throw 'Unable to convert to unknown type: ' + toType;
