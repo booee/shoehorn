@@ -1,8 +1,8 @@
 {
   "name": "shoehorn",
-  "version": "0.2.1",
-  "description": "Lightweight, unopinionated MVC form binding",
-  "main": "index.js",
+  "version": "0.2.2",
+  "description": "Unopinionated MVC form binding",
+  "main": "shoehorn.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/brad-bowie/shoehorn.git"
