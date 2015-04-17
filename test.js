@@ -6,7 +6,12 @@ var shoehorn = require('./shoehorn');
 shoehorn.register('TestSchema', {
     'requiredNum': {
         type: Number,
-        required: true
+        required: true,
+        requiredErrorMessage: 'OMG this is required!'
+    },
+    'optionalNumber': {
+        type: Number,
+        typeErrorMessage: '"%s" is not a number!'
     },
     'optionalString': {
         type: String
@@ -43,8 +48,6 @@ it('should handle dates', function() {
 });
 
 it('should catch type exceptions', function() {
-    var now = new Date();
-
     var someObj = {};
     someObj.requiredNum = 'a';
 
@@ -54,11 +57,22 @@ it('should catch type exceptions', function() {
 });
 
 it('should catch required exceptions', function() {
-    var now = new Date();
-
     var someObj = {};
 
     var convertedObj = shoehorn.bind('TestSchema', someObj);
     assert.equal(convertedObj.errors.length, 1);
     assert.equal(convertedObj.requiredNum, undefined);
+});
+
+it('should use custom error messages', function() {
+    var expectedRequiredErrorMessage = 'OMG this is required!';
+        var expectedTypeErrorMessage = '"a" is not a number!';
+
+    var someObj = {};
+    someObj.optionalNumber = 'a';
+
+    var convertedObj = shoehorn.bind('TestSchema', someObj);
+    assert.equal(convertedObj.errors.length, 2);
+    assert.equal(convertedObj.errors.indexOf(expectedRequiredErrorMessage) >= 0, true);
+    assert.equal(convertedObj.errors.indexOf(expectedTypeErrorMessage) >= 0, true);
 });

@@ -1,4 +1,5 @@
 var Map = require('hackmap');
+var util = require('util');
 
 function Shoehorn() {
     var models = new Map();
@@ -39,7 +40,8 @@ function Shoehorn() {
     function getField(variableName, constraints, value) {
         if(!value) {
             if(constraints.required) {
-                throw (constraints.requiredErrorMessage) ? constraints.requiredErrorMessage : variableName + ' is required';
+                var requiredError = constraints.requiredErrorMessage;
+                throw (requiredError) ? requiredError : util.format('%s is required', variableName);
             } else {
                 return undefined;
             }
@@ -47,7 +49,17 @@ function Shoehorn() {
 
         var converted = convert(constraints.type, value);
         if(converted === undefined) {
-            throw (constraints.typeErrorMessage) ? constraints.typeErrorMessage : variableName + ' is invalid: ' + value;
+            var typeError = constraints.typeErrorMessage;
+
+            if(typeError) {
+                if(typeError.indexOf('%s') >= 0) {
+                    typeError = util.format(typeError, value);
+                }
+            } else {
+                typeError = util.format('"%s" is an invalid value for %s', String(value), variableName);
+            }
+
+            throw typeError;
         } else {
             return converted;
         }

@@ -25,6 +25,10 @@ var loginSchema = {
         type: String,
         required: true,
         requiredErrorMessage: 'Please input your password'
+    },
+    'pinNumber': {
+        type: Number,
+        typeErrorMessage: '%s is not a valid PIN' // %s will be replaced with the value
     }
 };
 
