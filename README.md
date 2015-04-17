@@ -63,7 +63,7 @@ app.post('/login', function(req, res) {
         console.error('Form was submitted with errors!');
         res.send(loginForm.errors);
     } else {
-        // process login
+        // submitted form looked pretty good, OK to process login
     }
 });
 ```
