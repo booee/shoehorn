@@ -57,10 +57,10 @@ function Shoehorn() {
         if(!toType) return value;
 
         if(toType === Number) {
-            var num = new Number(value);
-            return (num !== NaN) ? num : undefined;
+            var num = Number(value);
+            return (!isNaN(num)) ? num : undefined;
         } else if(toType === String) {
-            return new String(value);
+            return String(value);
         } else if(toType === Date) {
             return new Date(value);
         }

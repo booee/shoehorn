@@ -41,3 +41,24 @@ it('should handle dates', function() {
     assert.equal(convertedObj.optionalString, now.toString());
     assert.equal(convertedObj.optionalDate instanceof Date, true);
 });
+
+it('should catch type exceptions', function() {
+    var now = new Date();
+
+    var someObj = {};
+    someObj.requiredNum = 'a';
+
+    var convertedObj = shoehorn.bind('TestSchema', someObj);
+    assert.equal(convertedObj.errors.length, 1);
+    assert.equal(convertedObj.requiredNum, undefined);
+});
+
+it('should catch required exceptions', function() {
+    var now = new Date();
+
+    var someObj = {};
+
+    var convertedObj = shoehorn.bind('TestSchema', someObj);
+    assert.equal(convertedObj.errors.length, 1);
+    assert.equal(convertedObj.requiredNum, undefined);
+});
