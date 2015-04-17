@@ -1,20 +1,22 @@
 # shoehorn
 
-So, you're writing a web app. You've got your controllers, you views, your models, and you're glueing them all together.
+So, you're writing a web app. You've got your express app, you're handling the form data, but you need an easy way to enforce formats on the incoming requests that plays nicely with your already-created application...
 
-### Install
+Just shoehorn it
+
+#### Install
 ```
 npm install shoehorn
 ```
 
-### Require
+#### Require
 ```
 var shoehorn = require('shoehorn');
 ```
 
-### Usage
+#### Usage
 
-#### .register(name, schema)
+##### .register(name, schema)
 Declares a schema to use during the binding process
 
 ```
@@ -44,7 +46,7 @@ Schema supports 4 parameters:
 * `required` - (Optional) A boolean; if left `true`, then the `requiredErrorMessage` will be added to the output in the event there is no value to convert. Left false, undefined may be set in the event there is no value to convert.
 * `requiredErrorMessage` - (Optional) A custom message should the value to convert be undefined. If not included, an automated version will be generated
 
-#### .bind(name, obj)
+##### .bind(name, obj)
 Binds an object to a desired schema type, enforcing the declared requirements
 
 ```
@@ -66,15 +68,15 @@ app.post('/login', function(req, res) {
 });
 ```
 
-### class: Form
+#### class: Form
 Returned from the `shoehorn#bind(name, obj)` execution
 
-#### Form.errors()
+##### Form.errors()
 Array of any errors encountered during the binding process.
 
-### Misc notes
+#### Misc notes
 
-#### Dates
+##### Dates
 * Going to a `Date` from a `Number`, assumes this is an epoch timestamp
 * Going from a `Date` from a `String`, assumes this is a formatted `String`
 * Going to a `Number` from a `Date`, creates an epoch timestamp (`Date.getTime()`)
