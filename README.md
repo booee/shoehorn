@@ -1,6 +1,6 @@
 # shoehorn
 
-So, you're writing a web app. You've got your express app, you're handling the form data, but you need an easy way to enforce formats on the incoming requests that plays nicely with your already-created application...
+So, you're writing a web app. You've got your express app, you're handling the form data, but you need an easy way to enforce formats on the incoming requests - a way that plays nicely with your already-created application.
 
 Just shoehorn it
 
