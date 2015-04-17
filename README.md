@@ -7,15 +7,18 @@ So, you're writing a web app. You've got your controllers, you views, your model
 npm install shoehorn
 ```
 
+### Require
+```
+var shoehorn = require('shoehorn');
+```
+
 ### Usage
 
 #### .register(name, schema)
 Declares a schema to use during the binding process
 
 ```
-var shoehorn = require('shoehorn');
-
-var loginSchema = {
+var loginFormSchema = {
     'userName': {
         type: String,
         required: true,
@@ -32,7 +35,7 @@ var loginSchema = {
     }
 };
 
-shoehorn.registerSchema('LoginForm', loginSchema);
+shoehorn.register('LoginForm', loginFormSchema);
 ```
 
 Schema supports 4 parameters:
@@ -45,7 +48,6 @@ Schema supports 4 parameters:
 Binds an object to a desired schema type, enforcing the declared requirements
 
 ```
-var shoehorn = require('shoehorn');
 var app = express();
 
 // config express application
@@ -68,7 +70,7 @@ app.post('/login', function(req, res) {
 Returned from the `shoehorn#bind(name, obj)` execution
 
 #### Form.errors()
-Array of any errors encountered during the binding process
+Array of any errors encountered during the binding process.
 
 ### Misc notes
 
