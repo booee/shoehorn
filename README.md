@@ -9,7 +9,7 @@ npm install shoehorn
 
 ### Usage
 
-#### .register(name, schema)
+#### shoehorn.register(name, schema)
 Declares a schema to use during the binding process
 
 ```
@@ -41,7 +41,7 @@ Schema supports 4 parameters:
 * `required` - (Optional) A boolean; if left `true`, then the `requiredErrorMessage` will be added to the output in the event there is no value to convert. Left false, undefined may be set in the event there is no value to convert.
 * `requiredErrorMessage` - (Optional) A custom message should the value to convert be undefined. If not included, an automated version will be generated
 
-#### .bind(name, obj)
+#### shoehorn.bind(name, obj)
 Binds an object to a desired schema type, enforcing the declared requirements
 
 ```
@@ -53,22 +53,26 @@ var app = express();
 // register your login schema (see above example)
 
 app.post('/login', function(req, res) {
-    var loginForm = shoehorn.bind('LoginForm', req.body);
+    var bindingResult = shoehorn.bind('LoginForm', req.body);
 
-    if(loginForm.errors.length > 0) {
+    if(bindingResult.errors.length > 0) {
         console.error('Form was submitted with errors!');
-        res.send(loginForm.errors);
+        res.send(bindingResult.errors);
     } else {
-        // process login
+        // log out the form conents
+        console.log(bindingResult.form);
     }
 });
 ```
 
-### class: Form
-Returned from the `shoehorn#bind(name, obj)` execution
+### class: BindingResult
+Returned from the `shoehorn#bind(name, obj)` execution, wraps the form and any errors encountered
 
-#### Form.errors()
+#### BindingResult.errors
 Array of any errors encountered during the binding process
+
+#### BindingResult.form
+The form generated from the binding process
 
 ### Misc notes
 
