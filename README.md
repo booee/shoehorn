@@ -1,21 +1,26 @@
 # shoehorn
 
-So, you're writing a web app. You've got your controllers, you views, your models, and you're glueing them all together.
+So, you're writing a web app. You've got your express app, you're handling the form data, but you need an easy way to enforce formats on the incoming requests - a way that plays nicely with your already-created application.
 
-### Install
+Just shoehorn it
+
+#### Install
 ```
 npm install shoehorn
 ```
 
-### Usage
+#### Require
+```
+var shoehorn = require('shoehorn');
+```
+
+#### Usage
 
 #### shoehorn.register(name, schema)
 Declares a schema to use during the binding process
 
 ```
-var shoehorn = require('shoehorn');
-
-var loginSchema = {
+var loginFormSchema = {
     'userName': {
         type: String,
         required: true,
@@ -32,7 +37,7 @@ var loginSchema = {
     }
 };
 
-shoehorn.registerSchema('LoginForm', loginSchema);
+shoehorn.register('LoginForm', loginFormSchema);
 ```
 
 Schema supports 4 parameters:
@@ -45,7 +50,6 @@ Schema supports 4 parameters:
 Binds an object to a desired schema type, enforcing the declared requirements
 
 ```
-var shoehorn = require('shoehorn');
 var app = express();
 
 // config express application
@@ -76,7 +80,7 @@ The form generated from the binding process
 
 ### Misc notes
 
-#### Dates
+##### Dates
 * Going to a `Date` from a `Number`, assumes this is an epoch timestamp
 * Going from a `Date` from a `String`, assumes this is a formatted `String`
 * Going to a `Number` from a `Date`, creates an epoch timestamp (`Date.getTime()`)
