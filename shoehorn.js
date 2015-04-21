@@ -24,17 +24,19 @@ function Shoehorn() {
 
     // TODO: can make this parallel for better speeeeeeds
     function createFromSchema(model, obj) {
-        var instance = {};
-        instance.errors = [];
+        var bindingResult = {};
+        bindingResult.errors = [];
+        bindingResult.form = {};
+
         for(variableName in model) {
             try {
-                instance[variableName] = getField(variableName, model[variableName], obj[variableName]);
+                bindingResult.form[variableName] = getField(variableName, model[variableName], obj[variableName]);
             } catch(err) {
-                instance.errors.push(err);
+                bindingResult.errors.push(err);
             }
         }
 
-        return instance;
+        return bindingResult;
     }
 
     function getField(variableName, constraints, value) {

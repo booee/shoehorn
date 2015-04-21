@@ -28,8 +28,10 @@ it('should work going from strings to types', function() {
 
     var convertedObj = shoehorn.bind('TestSchema', someObj);
     assert.equal(convertedObj.errors.length, 0);
-    assert.equal(convertedObj.requiredNum, 2);
-    assert.equal(convertedObj.optionalString, 'asdf');
+
+    var form = convertedObj.form;
+    assert.equal(form.requiredNum, 2);
+    assert.equal(form.optionalString, 'asdf');
 });
 
 it('should handle dates', function() {
@@ -42,9 +44,11 @@ it('should handle dates', function() {
 
     var convertedObj = shoehorn.bind('TestSchema', someObj);
     assert.equal(convertedObj.errors.length, 0);
-    assert.equal(convertedObj.requiredNum, now.getTime());
-    assert.equal(convertedObj.optionalString, now.toString());
-    assert.equal(convertedObj.optionalDate instanceof Date, true);
+
+    var form = convertedObj.form;
+    assert.equal(form.requiredNum, now.getTime());
+    assert.equal(form.optionalString, now.toString());
+    assert.equal(form.optionalDate instanceof Date, true);
 });
 
 it('should catch type exceptions', function() {
@@ -53,7 +57,9 @@ it('should catch type exceptions', function() {
 
     var convertedObj = shoehorn.bind('TestSchema', someObj);
     assert.equal(convertedObj.errors.length, 1);
-    assert.equal(convertedObj.requiredNum, undefined);
+
+    var form = convertedObj.form;
+    assert.equal(form.requiredNum, undefined);
 });
 
 it('should catch required exceptions', function() {
@@ -61,7 +67,9 @@ it('should catch required exceptions', function() {
 
     var convertedObj = shoehorn.bind('TestSchema', someObj);
     assert.equal(convertedObj.errors.length, 1);
-    assert.equal(convertedObj.requiredNum, undefined);
+
+    var form = convertedObj.form;
+    assert.equal(form.requiredNum, undefined);
 });
 
 it('should use custom error messages', function() {
