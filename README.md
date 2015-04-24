@@ -1,8 +1,6 @@
-# shoehorn
+So, you're a web-mvc layer. You've got your express app, you're accepting request bodies, but you're writing out painful validation logic all over the place. Instead, levereage **shoehorn** as a generic way to do required/type validation as well as casting
 
-So, you're writing a web app. You've got your express app, you're handling the form data, but you need an easy way to enforce formats on the incoming requests - a way that plays nicely with your already-created application.
-
-Just shoehorn it
+chickity-check it out: https://www.npmjs.com/package/shoehorn/
 
 #### Install
 ```
